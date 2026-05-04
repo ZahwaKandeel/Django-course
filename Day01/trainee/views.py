@@ -8,7 +8,7 @@ def traineelist(request):
     trainee=[1,'Zahwa','track python']
     context={'Name':'Trainess names','trainees':trainees,'trainee':trainee}
     
-    return render(request,'trainee/list.html',context)
+    return render(request,'trainee/traineeList.html',context)
 
 def addTrainee(request):
     return HttpResponse('<h1>Add Trainee</h1>')
