@@ -1,8 +1,14 @@
 from django.http.response import HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 def traineelist(request):
-    return HttpResponse('<h1>Trainee List</h1>')
+    trainees={'1':{    'id':1,  'name':'zahwa'  },
+              '2':{    'id':2,  'name':'ahmed'  }}
+    trainee=[1,'Zahwa','track python']
+    context={'Name':'Trainess names','trainees':trainees,'trainee':trainee}
+    
+    return render(request,'trainee/list.html',context)
 
 def addTrainee(request):
     return HttpResponse('<h1>Add Trainee</h1>')
@@ -12,3 +18,4 @@ def updateTrainee(request):
 
 def deleteTrainee(request):
     return HttpResponse('<h1>Delete Trainee</h1>')
+
