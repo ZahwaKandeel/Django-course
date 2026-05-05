@@ -8,3 +8,6 @@ class Course(models.Model):
     track = models.CharField(max_length=100, null=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name

@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ITIan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ITIan',
+        'NAME': 'itian',
         'HOST':'localhost',
         'USER':'postgres',
         'PASSWORD':'1234567',

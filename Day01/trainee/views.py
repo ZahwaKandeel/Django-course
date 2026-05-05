@@ -3,18 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def traineelist(request):
-    trainees = {
-        '1':{    'id':1,  'name':'zahwa'  },
-        '2':{    'id':2,  'name':'ahmed'  }
-    }
-
-    trainee = [1,'Zahwa','track python']
-
-    context={
-        'Name':'Trainess names',
-        'trainees':trainees,
-        'trainee':trainee}
-    
+    context={"trainees":Trainee.objects.all()}
     return render(request,'trainee/traineeList.html',context)
 
 def addTrainee(request):
