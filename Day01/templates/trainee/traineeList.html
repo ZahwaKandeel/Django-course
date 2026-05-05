@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Trainee_List
+{% endblock %}
+
+{% block content %}
+
+<h2>Dictionary Data:</h2>
+{% for key, value in trainees.items %}
+    ID: {{ value.id }} <br>
+    Name: {{ value.name }} <br><br>
+{% endfor %}
+
+<h2>List Data:</h2>
+{% for item in trainee %}
+    {{ item }} <br>
+{% endfor %}
+
+{% endblock %}
