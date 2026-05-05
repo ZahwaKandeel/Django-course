@@ -1,12 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
-
-def home(request):
-    return render(request, 'users/base.html')
+from django.contrib.auth import logout as auth_logout
 
 def login(request):
     return render(request, 'users/login.html')
 
 def register(request):
     return render(request, 'users/register.html')
+
+def logout(request):
+    auth_logout(request)
+    return render(request, 'users/logout.html')
