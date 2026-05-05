@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #new apps
     'trainee.apps.TraineeConfig',
-    'course.apps.CourseConfig'
+    'course.apps.CourseConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+LOGIN_REDIRECT_URL = '/Trainee/trainees/'
+LOGOUT_REDIRECT_URL = '/Signup/login/'
