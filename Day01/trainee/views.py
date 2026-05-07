@@ -4,8 +4,8 @@ from .models import Trainee
 
 # Create your views here.
 def traineelist(request):
-    context={"trainees":Trainee.objects.all()}
-    return render(request,'trainee/traineeList.html',context)
+    context={"traineesList":Trainee.objects.all()}
+    return render(request,'trainee/list.html',context)
 
 def addTrainee(request):
     return HttpResponse('<h1>Add Trainee</h1>')
