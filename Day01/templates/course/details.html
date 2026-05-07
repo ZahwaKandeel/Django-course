@@ -1,21 +1,29 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Course_List
-{% endblock %}
-
-{% block content %}
-
-<h2>Dictionary Data:</h2>
-{% for key, value in details.items %}
-    ID: {{ value.id }} <br>
-    Name: {{ value.name }} <br><br>
-    Track: {{ value.track }} <br><br>
-{% endfor %}
-
-<h2>List Data:</h2>
-{% for item in details %}
-    {{ item }} <br>
-{% endfor %}
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+</head>
+<body>
+    <h1>{{ course.name }}</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Track</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+        </tr>
+        <tr>
+            <td>{{ course.id }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.code }}</td>
+            <td>{{ course.track }}</td>
+            <td>{{ course.createdAt }}</td>
+            <td>{{ course.updatedAt }}</td>
+        </tr>
+    </table>
+</body>
+</html>
