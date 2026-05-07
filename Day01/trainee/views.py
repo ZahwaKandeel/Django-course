@@ -7,6 +7,10 @@ def traineelist(request):
     context={"traineesList":Trainee.objects.all()}
     return render(request,'trainee/list.html',context)
 
+def traineeDetail(request,id):
+    context = {"traineeDetails":Trainee.objects.get(pk=id)}
+    return render(request, 'trainee/details.html', context)
+
 def addTrainee(request):
     return HttpResponse('<h1>Add Trainee</h1>')
 
