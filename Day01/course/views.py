@@ -22,8 +22,17 @@ def addCourse(request):
     
     return render(request, 'course/add.html')
 
-def updateCourse(request):
-    return render(request, 'course/update.html')
+def updateCourse(request,id):
+    courseUpd = Course.objects.get(pk=id)
+    if request.method == "POST":
+        courseUpd.name = request.POST.get("name")
+        courseUpd.code = request.POST.get("code")
+        courseUpd.track = request.POST.get( "track")
+
+        courseUpd.save()
+        return redirect('coursesDetails', id=courseUpd.id)
+
+    return render(request, 'course/update.html', {"id":id})
 
 def deleteCourse(request):
     return HttpResponse('<h1>Delete course</h1>')
