@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainee Delete</title>
+</head>
+<body>
+    <h1>{{ traineeDel.name }}</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Degree</th>
+        </tr>
+        <tr>
+            <td>{{ traineeDel.id }}</td>
+            <td>{{ traineeDel.name }}</td>
+            <td>{{ traineeDel.age }}</td>
+            <td>{{ traineeDel.degree }}</td>
+        </tr>
+    </table>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete that trainee ?</p>
+        <button type="submit">Delete Trainee</button>  
+    </form>
+</body>
+</html>

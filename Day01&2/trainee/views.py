@@ -32,6 +32,15 @@ def updateTrainee(request, id):
 
     return render(request, 'trainee/update.html', {"id":id})
 
-def deleteTrainee(request):
-    return HttpResponse('<h1>Delete Trainee</h1>')
+def deleteTrainee(request,id):
+    traineeDel = Trainee.objects.get(pk=id)
+    if request.method == "POST":
+        traineeDel.name = request.POST.get("name")
+        traineeDel.code = request.POST.get("age")
+        traineeDel.track = request.POST.get( "description")
+        
+        traineeDel.delete()
+        return redirect('traineesList')    
+
+    return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
 
