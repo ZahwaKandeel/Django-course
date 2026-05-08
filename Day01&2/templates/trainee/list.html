@@ -10,12 +10,23 @@
     <table border="1">
         <tr>
             <th>Name</th>
+            <th>Click here to update</th>
+            <th>Click here to delete</th>
         </tr>
         {% for trainee in traineesList %}
             <tr>
-                <td>{{ trainee.name }}</td>
+                <td>
+                    <a href="{% url 'traineeDetails' trainee.id %}">{{ trainee.name }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'updateTrainee' trainee.id %}">Update: {{ trainee.name }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'deleteTrainee' trainee.id %}">Delete: {{ trainee.name }}</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
+    <a href="{% url 'addTrainee' %}">Add new Trainee: </a> 
 </body>
 </html>
