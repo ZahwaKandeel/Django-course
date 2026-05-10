@@ -1,10 +1,11 @@
-from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Trainee
+from .forms import TraineeForm, TraineeFormModel
+from course.models import Course
 
 # Create your views here.
 def traineelist(request):
-    context={"traineesList":Trainee.objects.all()}
+    context={"traineesList":Trainee.objects.filter(is_active=True)}
     return render(request,'trainee/list.html',context)
 
 def traineeDetail(request,id):
@@ -37,10 +38,43 @@ def deleteTrainee(request,id):
     if request.method == "POST":
         traineeDel.name = request.POST.get("name")
         traineeDel.code = request.POST.get("age")
-        traineeDel.track = request.POST.get( "description")
+        traineeDel.track = request.POST.get( "degree")
         
         traineeDel.delete()
         return redirect('traineesList')    
 
     return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
 
+def addTraineeForm(request):
+    context = {"trainees": Trainee.objects.all(), 'form':TraineeForm()}
+    if request.method == "POST":
+        form = TraineeForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            Trainee.objects.create(
+                name = request.POST ["name"], 
+                age = request.POST ["age"], 
+                degree = request.POST ["degree"],
+                image = request.FILES.get("image"),
+                course = Course.objects.get(pk = request.POST["course"])
+            )
+            return redirect('traineesList')
+        else:
+            print(form.errors)
+    return render(request, "trainee/add.html", context=context)
+
+def addTraineeModelForm(request):
+    context = {"trainees": Trainee.objects.all(), 'form':TraineeFormModel()}
+    if request.method == "POST":
+        form = TraineeFormModel(data=request.POST, files=request.FILES)
+        if form.is_valid:
+            form.save()
+            return redirect('traineesList')
+    return render(request, "trainee/add.html", context=context)
+
+def deleteTraineeSoft(request,id):
+    traineeDel = Trainee.objects.get(pk=id)
+    if request.method == "POST":
+        traineeDel.is_active = False
+        traineeDel.save()
+        return redirect('traineesList')
+    return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})

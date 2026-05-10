@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>Add Trainee</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form }}
+        <!--
         <div>
             <label for="name">Trainee Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name">
@@ -19,7 +21,8 @@
         <div>
             <label for="track">Trainee's Degree</label>
             <input type="text" id="degree" name="degree" placeholder="Enter your degree">
-        </div>  
+        </div>
+        -->  
         <button type="submit">Add Trainee</button>  
     </form>
 </body>

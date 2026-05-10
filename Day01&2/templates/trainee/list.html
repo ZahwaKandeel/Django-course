@@ -22,11 +22,11 @@
                     <a href="{% url 'updateTrainee' trainee.id %}">Update: {{ trainee.name }}</a>
                 </td>
                 <td>
-                    <a href="{% url 'deleteTrainee' trainee.id %}">Delete: {{ trainee.name }}</a>
+                    <a href="{% url 'deleteTraineeSoft' trainee.id %}">Delete: {{ trainee.name }}</a>
                 </td>
             </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'addTrainee' %}">Add new Trainee: </a> 
+    <a href="{% url 'addTraineeForm' %}">Add new Trainee: </a> 
 </body>
 </html>
