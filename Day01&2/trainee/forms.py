@@ -2,11 +2,11 @@ from django import forms
 from .models import Trainee
 from course.models import Course
 
-class TraineeForm(forms.form):
-    name = forms.CharField(max_length=100, null=False)
-    age = forms.IntegerField(null=False)
-    degree = forms.DecimalField(decimal_places=2,max_digits=4,null=False)
-    image = forms.ImageField(label="Profile image")
+class TraineeForm(forms.Form):
+    name = forms.CharField(max_length=100, required=True)
+    age = forms.IntegerField(required=True)
+    degree = forms.DecimalField(decimal_places=2,max_digits=4,required=True)
+    image = forms.ImageField(label="Profile image", required=False)
     course = forms.ChoiceField(choices=[(c.id, c.name) for c in Course.objects.all()])
 
 class TraineeFormModel(forms.ModelForm):
