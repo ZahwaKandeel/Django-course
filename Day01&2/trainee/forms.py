@@ -12,4 +12,4 @@ class TraineeForm(forms.Form):
 class TraineeFormModel(forms.ModelForm):
     class Meta:
         model= Trainee
-        fields=["name", "age", "degree"]
+        fields=["name", "age", "degree", "image", "course"]

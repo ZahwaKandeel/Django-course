@@ -61,3 +61,12 @@ def addTraineeForm(request):
         else:
             print(form.errors)
     return render(request, "trainee/add.html", context=context)
+
+def addTraineeModelForm(request):
+    context = {"trainees": Trainee.objects.all(), 'form':TraineeFormModel()}
+    if request.method == "POST":
+        form = TraineeFormModel(data=request.POST, files=request.FILES)
+        if form.is_valid:
+            form.save()
+            return redirect('traineesList')
+    return render(request, "trainee/add.html", context=context)
