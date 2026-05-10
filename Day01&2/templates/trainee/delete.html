@@ -13,12 +13,16 @@
             <th>Name</th>
             <th>Age</th>
             <th>Degree</th>
+            <th>Image</th>
+            <th>Course</th>
         </tr>
         <tr>
             <td>{{ traineeDel.id }}</td>
             <td>{{ traineeDel.name }}</td>
             <td>{{ traineeDel.age }}</td>
             <td>{{ traineeDel.degree }}</td>
+            <td>{{ traineeDel.image }}</td>
+            <td>{{ traineeDel.course.name }}</td>
         </tr>
     </table>
     <form method="POST">

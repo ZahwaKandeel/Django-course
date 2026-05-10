@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete/<int:id>/', deleteTrainee, name='deleteTrainee'),
     path('addForm/', addTraineeForm, name="addTraineeForm"),
     path('addModelForm/', addTraineeModelForm, name="addTraineeModelForm"),
+    path('deleteSoft/<int:id>/', deleteTraineeSoft, name="deleteTraineeSoft")
 ]

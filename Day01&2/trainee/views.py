@@ -5,7 +5,7 @@ from course.models import Course
 
 # Create your views here.
 def traineelist(request):
-    context={"traineesList":Trainee.objects.all()}
+    context={"traineesList":Trainee.objects.filter(is_active=True)}
     return render(request,'trainee/list.html',context)
 
 def traineeDetail(request,id):
@@ -70,3 +70,11 @@ def addTraineeModelForm(request):
             form.save()
             return redirect('traineesList')
     return render(request, "trainee/add.html", context=context)
+
+def deleteTraineeSoft(request,id):
+    traineeDel = Trainee.objects.get(pk=id)
+    if request.method == "POST":
+        traineeDel.is_active = False
+        traineeDel.save()
+        return redirect('traineesList')
+    return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
