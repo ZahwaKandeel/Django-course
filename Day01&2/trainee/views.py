@@ -43,4 +43,3 @@ def deleteTrainee(request,id):
         return redirect('traineesList')    
 
     return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
-
