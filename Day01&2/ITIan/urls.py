@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Trainee/',include('trainee.urls')),
     path('Course/', include('course.urls')),
-    path('Signup/', include('users.urls')),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    #path('logout/', logout, name='logout'),
+    #path('register/', register, name='register'),
 ]
 
 if settings.DEBUG:

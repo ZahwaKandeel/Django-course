@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #new apps
     'trainee.apps.TraineeConfig',
-    'course.apps.CourseConfig',
-    'users.apps.UsersConfig'
+    'course.apps.CourseConfig'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +133,7 @@ LOGOUT_REDIRECT_URL = '/Signup/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#redirect
+LOGIN_REDIRECT_URL='trainees'
+LOGOUT_REDIRECT_URL='login'
