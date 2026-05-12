@@ -135,5 +135,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #redirect
-LOGIN_REDIRECT_URL='trainees'
+LOGIN_REDIRECT_URL='traineesList'
 LOGOUT_REDIRECT_URL='login'
