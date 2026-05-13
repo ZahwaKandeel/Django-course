@@ -11,5 +11,6 @@ urlpatterns = [
     # path('addForm/', addTraineeForm, name="addTraineeForm"),
     # path('addModelForm/', addTraineeModelForm, name="addTraineeModelForm"),
     path('deleteSoft/<int:id>/', deleteTraineeSoft, name="deleteTraineeSoft"),
-    path('addForm/', AddTraineeView.as_view(), name="addTraineeForm")
+    path('addForm/', AddTraineeView.as_view(), name="addTraineeForm"),
+    path('addModelForm/', AddTraineeModelFormView.as_view(), name="addTraineeModelForm")
 ]

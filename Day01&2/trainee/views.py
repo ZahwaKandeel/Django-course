@@ -99,3 +99,10 @@ class AddTraineeView(View):
             form.save()
             return redirect('traineesList')
         return render(request, "trainee/add.html", {"form":form})   
+    
+#insert trainee generic with model form
+class AddTraineeModelFormView(generic.CreateView):
+    model = Trainee
+    form_class = TraineeFormModel
+    template_name = "trainee/add.html"
+    success_url = "Trainee/trainees/"
