@@ -3,6 +3,7 @@ from .models import Trainee
 from .forms import TraineeForm, TraineeFormModel
 from course.models import Course
 from django.views import generic, View
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 #def traineelist(request):
@@ -106,3 +107,7 @@ class AddTraineeModelFormView(generic.CreateView):
     form_class = TraineeFormModel
     template_name = "trainee/add.html"
     success_url = "Trainee/trainees/"
+
+@login_required(login_url='/login/')
+def secretPage(request):
+    return render(request, 'accounts/secret.html')
