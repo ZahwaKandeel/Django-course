@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     #new apps
     'trainee.apps.TraineeConfig',
     'course.apps.CourseConfig',
-    'users.apps.UsersConfig'
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +134,7 @@ LOGOUT_REDIRECT_URL = '/Signup/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#redirect
+LOGIN_REDIRECT_URL='traineesList'
+LOGOUT_REDIRECT_URL='login'

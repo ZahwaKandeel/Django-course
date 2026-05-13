@@ -18,7 +18,7 @@ def addTrainee(request):
                                age = request.POST ["age"], 
                                degree = request.POST ["degree"],)
         return redirect ('traineesList')
-    
+
     return render(request, 'trainee/add.html')
 
 def updateTrainee(request, id):
