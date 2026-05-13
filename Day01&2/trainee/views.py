@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect
 from .models import Trainee
 from .forms import TraineeForm, TraineeFormModel
 from course.models import Course
+from django.views import generic, View
 
 # Create your views here.
-def traineelist(request):
-    context={"traineesList":Trainee.objects.filter(is_active=True)}
-    return render(request,'trainee/list.html',context)
+#def traineelist(request):
+#    context={"traineesList":Trainee.objects.filter(is_active=True)}
+#    return render(request,'trainee/list.html',context)
+
+#Generic View
+class TraineeListView(generic.ListView):
+    queryset = Trainee.objects.filter(is_active=True)
+    template_name = 'trainee/list.html'
+    context_object_name = 'traineesList'
 
 def traineeDetail(request,id):
     context = {"traineeDetails":Trainee.objects.get(pk=id)}
