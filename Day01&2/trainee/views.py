@@ -19,14 +19,14 @@ def traineeDetail(request,id):
     context = {"traineeDetails":Trainee.objects.get(pk=id)}
     return render(request, 'trainee/details.html', context)
 
-def addTrainee(request):
-    if request.method == "POST":
-        Trainee.objects.create(name = request.POST ["name"], 
-                               age = request.POST ["age"], 
-                               degree = request.POST ["degree"],)
-        return redirect ('traineesList')
+# def addTrainee(request):
+#     if request.method == "POST":
+#         Trainee.objects.create(name = request.POST ["name"], 
+#                                age = request.POST ["age"], 
+#                                degree = request.POST ["degree"],)
+#         return redirect ('traineesList')
 
-    return render(request, 'trainee/add.html')
+#     return render(request, 'trainee/add.html')
 
 def updateTrainee(request, id):
     traineeUpd = Trainee.objects.get(pk=id)
@@ -52,31 +52,31 @@ def deleteTrainee(request,id):
 
     return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
 
-def addTraineeForm(request):
-    context = {"trainees": Trainee.objects.all(), 'form':TraineeForm()}
-    if request.method == "POST":
-        form = TraineeForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            Trainee.objects.create(
-                name = request.POST ["name"], 
-                age = request.POST ["age"], 
-                degree = request.POST ["degree"],
-                image = request.FILES.get("image"),
-                course = Course.objects.get(pk = request.POST["course"])
-            )
-            return redirect('traineesList')
-        else:
-            print(form.errors)
-    return render(request, "trainee/add.html", context=context)
+# def addTraineeForm(request):
+#     context = {"trainees": Trainee.objects.all(), 'form':TraineeForm()}
+#     if request.method == "POST":
+#         form = TraineeForm(data=request.POST, files=request.FILES)
+#         if form.is_valid():
+#             Trainee.objects.create(
+#                 name = request.POST ["name"], 
+#                 age = request.POST ["age"], 
+#                 degree = request.POST ["degree"],
+#                 image = request.FILES.get("image"),
+#                 course = Course.objects.get(pk = request.POST["course"])
+#             )
+#             return redirect('traineesList')
+#         else:
+#             print(form.errors)
+#     return render(request, "trainee/add.html", context=context)
 
-def addTraineeModelForm(request):
-    context = {"trainees": Trainee.objects.all(), 'form':TraineeFormModel()}
-    if request.method == "POST":
-        form = TraineeFormModel(data=request.POST, files=request.FILES)
-        if form.is_valid:
-            form.save()
-            return redirect('traineesList')
-    return render(request, "trainee/add.html", context=context)
+# def addTraineeModelForm(request):
+#     context = {"trainees": Trainee.objects.all(), 'form':TraineeFormModel()}
+#     if request.method == "POST":
+#         form = TraineeFormModel(data=request.POST, files=request.FILES)
+#         if form.is_valid:
+#             form.save()
+#             return redirect('traineesList')
+#     return render(request, "trainee/add.html", context=context)
 
 def deleteTraineeSoft(request,id):
     traineeDel = Trainee.objects.get(pk=id)
@@ -85,3 +85,24 @@ def deleteTraineeSoft(request,id):
         traineeDel.save()
         return redirect('traineesList')
     return render(request, 'trainee/delete.html', {"traineeDel":traineeDel})
+
+
+#insert trainee class based view
+class AddTraineeView(View):
+    def get(self, request):
+        form=TraineeFormModel()
+        return render(request, "trainee/add.html", {"form":form})
+
+    def post(self, request):
+        form = TraineeFormModel(data=request.POST, files=request.FILES)
+        if form.is_valid:
+            form.save()
+            return redirect('traineesList')
+        return render(request, "trainee/add.html", {"form":form})   
+    
+#insert trainee generic with model form
+class AddTraineeModelFormView(generic.CreateView):
+    model = Trainee
+    form_class = TraineeFormModel
+    template_name = "trainee/add.html"
+    success_url = "Trainee/trainees/"
