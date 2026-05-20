@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'trainee.apps.TraineeConfig',
     'course.apps.CourseConfig',
     'accounts.apps.AccountsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ DATABASES = {
         'NAME': 'itian',
         'HOST':'localhost',
         'USER':'postgres',
-        'PASSWORD':'1234567',
+        'PASSWORD':'1234',
         'PORT':5432,
     }
 }
@@ -138,3 +139,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #redirect
 LOGIN_REDIRECT_URL='traineesList'
 LOGOUT_REDIRECT_URL='login'
+
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
